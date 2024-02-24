@@ -132,8 +132,30 @@ section .Topic {
     border-radius: 10px;
     background-color: rgba(224, 206, 50, 0.977);
     display: none;
+    z-index: 100;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
 }
-
+@keyframes translate{
+    from{
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes fall{
+    from{
+        transform: translateY(0px);
+    }
+    to{
+        transform: translateY(30px);
+        opacity: 0;
+    }
+}
 .page-one .drop div {
     width: 100%;
     border: 2px solid rgb(52, 52, 52);
@@ -147,11 +169,17 @@ section .Topic {
     font-weight: 600;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding-left: 20px;
+    z-index: 1000;
 }
-.page-one .drop div:nth-of-type(3){
+.page-one .drop div p{
+    margin-right: 20px;
+}
+.page-one .drop div:nth-of-type(3) {
     border-bottom: none;
 }
+
 .page-one .drop div:hover {
     animation: color .1s ease-out forwards;
 }
@@ -163,6 +191,14 @@ section .Topic {
         border-radius: 10px;
         color: rgb(224, 207, 50);
     }
+}
+
+.up {
+    position: absolute;
+    color: rgb(224 207 50);
+    margin-left: 68%;
+    margin-top: -28px;
+    z-index: 1;
 }
 
 .page-one input:focus {
@@ -569,10 +605,11 @@ section .Topic {
     cursor: pointer;
     word-spacing: 1px;
 }
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 
@@ -608,13 +645,15 @@ input::-webkit-inner-spin-button {
 @media (max-width: 925px) {
     section {
         height: 600px;
-        width: 99%;
+        width: 98%;
     }
 
     .page-one label {
         margin-top: 10px;
     }
-
+    .up{
+        display: none;
+    }
     .page-two .Topic {
         margin-top: 10px;
     }
@@ -668,7 +707,8 @@ input::-webkit-inner-spin-button {
     .page-three .detail {
         width: 9000px;
     }
-    .page-two .flexCarrier div:nth-of-type(2) .line{
+
+    .page-two .flexCarrier div:nth-of-type(2) .line {
         margin-top: 15px;
     }
 }
@@ -804,10 +844,12 @@ input::-webkit-inner-spin-button {
         margin: auto;
         margin-top: 20px;
     }
-    .page-one .drop{
+
+    .page-one .drop {
         width: 80%;
         margin-left: calc(50% - 40%);
     }
+
     .page-three .buttonFlex {
         margin-top: 50px;
     }
