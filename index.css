@@ -153,7 +153,7 @@ section .Topic {
     border-bottom: none;
 }
 .page-one .drop div:hover {
-    animation: color .3s ease-out forwards;
+    animation: color .1s ease-out forwards;
 }
 
 @keyframes color {

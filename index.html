@@ -17,6 +17,7 @@
 
 <body>
     <main>
+        <!-- REGISTERY SECTION -->
         <section class="page-one" id="page_one">
             <div class="SectionNumber">
                 <div class="one">
@@ -38,27 +39,27 @@
                 <div class="link"></div>
             </div>
             <h1 class="Topic">Register</h1>
-
-            <label for="names">Name</label>
-            <input type="text" id="names" autocomplete="name">
-
-            <label for="surname">Surname</label>
-            <input type="text" id="surname" autocomplete="name">
-
-            <label for="email">Email Address</label>
-            <input type="email" id="email" autocomplete="email">
+            <label for="userName">Name</label>
+            <input type="text" id="userName" autocomplete="name">
+            <label for="userSurname">Surname</label>
+            <input type="text" id="userSurname" autocomplete="name">
+            <label for="userEmail">Email Address</label>
+            <input type="userEmail" id="userEmail" autocomplete="userEmail">
             <div class="drop" id="drop">
-                <div onclick="leve('Economy', 0)">Economy ---- 0$</div>
-                <div onclick="leve('Business', 500)">Business ---- 250$</div>
-                <div onclick="leve('V-VIP', 1000)">V-VIP ---- 1000$</div>
+                <div onclick="changeLevel('Economy', 0)">Economy<p>0$</p>
+                </div>
+                <div onclick="changeLevel('Business', 500)">Business<p>500$</p>
+                </div>
+                <div onclick="changeLevel('V-VIP', 1000)">V-VIP<p>1000$</p>
+                </div>
             </div>
             <label for="level">Your Level</label>
-            <input name="" id="level" value="Economy" readonly onclick="trigger()">
-
-            <button onclick="nextPage()" onmouseover="err()" id="cont">Continue <i class="fa-solid fa-angles-right"
-                    style="margin-top: 2px; margin-left: 5px;"></i></button>
+            <input name="" id="level" value="Economy" readonly onclick="showLevelDropdown()">
+            <button onclick="proceedToPageTwo()" onmouseover="cursorChange()" id="cont">Continue <i
+                    class="fa-solid fa-angles-right" style="margin-top: 2px; margin-left: 5px;"></i></button>
         </section>
         <!-- SECOND PAGE STARTS HERE -->
+        <!-- SESSION SECTION -->
         <section class="page-two" id="page_two" hidden>
             <div class="SectionNumber">
                 <div class="one">
@@ -81,7 +82,7 @@
             </div>
             <h1 class="Topic">Choose session</h1>
             <div class="flexCarrier">
-                <div onclick="session2('1' ,'Stargazer', 150)" id="firstsession">
+                <div onclick="session('1' ,'Stargazer', 150)" id="firstsession">
                     <h1>11 August</h1>
                     <h2>10AM - 4PM</h2>
                     <p>Celestial journey with Stargazer's Sojourn. Marvel at the wonders of the night sky.</p>
@@ -90,7 +91,7 @@
                     <div class="selectIndicator" id="sec1ind"><i class="fa-solid fa-check" id="session1Checked"></i>
                     </div>
                 </div>
-                <div onclick="session2('2','Adventurer', 110)" id="secondsession">
+                <div onclick="session('2','Adventurer', 110)" id="secondsession">
                     <h1>12 August</h1>
                     <h2>10AM - 4PM</h2>
                     <p>adventure filled with exploration and discovery. From the towering peaks to the endless seas</p>
@@ -100,13 +101,14 @@
                 </div>
             </div>
             <div class="buttonFlex">
-                <button onclick="b2p1()"><i class="fa-solid fa-angles-left"
+                <button onclick="backToPageOne()"><i class="fa-solid fa-angles-left"
                         style="margin-top: 2px; margin-right: 5px;"></i>Back</button>
-                <button onclick="topage3()">Continue <i class="fa-solid fa-angles-right"
+                <button onclick="proceedToPageThree()">Continue <i class="fa-solid fa-angles-right"
                         style="margin-top: 2px; margin-left: 5px;"></i></button>
             </div>
         </section>
         <!-- THIRD SECTION BEGINS HERE -->
+        <!-- PAYMENT SECTION -->
         <section class="page-three" id="page_three" hidden>
             <div class="SectionNumber">
                 <div class="one">
@@ -131,45 +133,46 @@
             <p class="info">Please fill out your payment details</p>
             <div class="inpflexCarrier">
                 <div class="insertion">
-                    <!-- <fieldset> -->
-                    <!-- <legend>Kindly Complete This Field</legend> -->
                     <label for="cardNumber">Card Number</label>
-                    <input type="text" id="cardNumber" placeholder="Card Number" oninput="spi('ou')" maxlength="19">
+                    <input type="text" id="cardNumber" placeholder="Card Number" oninput="setMaxLength('')"
+                        maxlength="18">
                     <label for="cardHolder">Card Holder</label>
                     <input type="Name" id="cardHolder" placeholder="Card Holder">
                     <div class="lfl">
                         <label for="expDate" class="smalll">Expiration Date</label>
-                        <label for="spin" class="smalll">CVC</label>
+                        <label for="cvc" class="smalll">CVC</label>
                     </div>
                     <div class="fl">
                         <input type="date" name="" id="expDate" class="small">
-                        <input type="number" name="" id="spin" class="small" placeholder="_ _ _" maxlength="3" oninput="spi('s')">
+                        <input type="number" name="" id="cvc" class="small" placeholder="_ _ _" maxlength="3"
+                            oninput="setMaxLength('cvc')">
                     </div>
-                    <!-- </fieldset> -->
                 </div>
                 <div class="detail">
                     <div>
-                        <p id="tkname"></p>
-                        <p id="ppday"></p>
+                        <p id="ticketName"></p>
+                        <p id="paymentPerDay"></p>
                     </div>
                     <div>
                         <p>Amount</p>
-                        <input type="number" maxlength="1" placeholder="amt" oninput="quan()" id="qu">
+                        <input type="number" maxlength="1" placeholder="AMT" oninput="setMaxTicketQuantity()"
+                            id="ticketQuantity">
                     </div>
                     <div>
                         <p>Total</p>
-                        <p id="amt">0$</p>
+                        <p id="totalAmount">0$</p>
                     </div>
                 </div>
             </div>
             <div class="buttonFlex">
-                <button onclick="b2p2()"><i class="fa-solid fa-angles-left"
+                <button onclick="backToPageTwo()"><i class="fa-solid fa-angles-left"
                         style="margin-top: 2px; margin-right: 5px;"></i>Back</button>
-                <button onclick="top4()" id="co">Continue <i class="fa-solid fa-angles-right"
-                        style="margin-top: 2px; margin-left: 5px;"></i></button>
+                <button onclick="proceedToPageFour()" id="continueToPageFour">Continue <i
+                        class="fa-solid fa-angles-right" style="margin-top: 2px; margin-left: 5px;"></i></button>
             </div>
         </section>
         <!-- FIRTH SECTION BEGINS HERE -->
+        <!-- GO TO HOMEPAGE SECTION -->
         <section class="page-four" id="page_four" hidden>
             <div class="SectionNumber">
                 <div class="one">
@@ -194,66 +197,74 @@
                 <i class="fa-solid fa-check"></i>
             </div>
             <h1 class="Topic">Payment Complete</h1>
-            <p class="info">Thank you, your payment has been successful. <br>A confirmation email has been sent to
-                <br><strong id="insem"></strong>
+            <p class="info">Thank you, your payment has been successful. <br>A confirmation userEmail has been sent to
+                <br><strong id="receivedEmail"></strong>
             </p>
             <button>Go to home page</button>
         </section>
     </main>
 </body>
-
-
+<!-- SCRIPT -->
 <script>
     let amount = '150'
     let ticketname = 'Stargazer'
     let status = ''
-    function nextPage(message) {
-        let reder = 'This Field is Required'
+    let formatAccountNumber = 0
+    function proceedToPageTwo(message) {
+        let placeholderWriter = 'This Field is Required'
         let index = 0
-        if (names.value && surname.value && email.value) {
+        if (userName.value && userSurname.value && userEmail.value) {
             page_one.hidden = true
             page_two.hidden = false
         }
         else {
             int = setInterval(() => {
-                names.placeholder += reder[index]
-                surname.placeholder += reder[index]
-                email.placeholder += reder[index]
+                userName.placeholder += placeholderWriter[index]
+                userSurname.placeholder += placeholderWriter[index]
+                userEmail.placeholder += placeholderWriter[index]
                 index++
-                if (index == reder.length) {
+                if (index == placeholderWriter.length) {
                     clearInterval(int)
                 }
                 cont.setAttribute('onclick', '')
             }, 50);
 
             setTimeout(() => {
-                index = reder.length
+                index = placeholderWriter.length
                 let ins = setInterval(() => {
                     index--
-                    reder = reder.slice(0, -1)
-                    names.placeholder = reder
-                    surname.placeholder = reder
-                    email.placeholder = reder
+                    placeholderWriter = placeholderWriter.slice(0, -1)
+                    userName.placeholder = placeholderWriter
+                    userSurname.placeholder = placeholderWriter
+                    userEmail.placeholder = placeholderWriter
                     if (index == 0) {
                         clearInterval(ins)
                         index = 0
-                        cont.setAttribute('onclick', 'nextPage()')
+                        cont.setAttribute('onclick', 'proceedToPageTwo()')
                     }
                 }, 50);
             }, 2500);
             setTimeout(() => {
-                reder = 'This Field is Required'
+                placeholderWriter = 'This Field is Required'
             }, 4200);
         }
     }
-    function err() {
-        if (names.value && surname.value && email.value) {
+    function showLevelDropdown() {
+        drop.style.display = 'block'
+    }
+    function changeLevel(message, price) {
+        drop.style.display = 'none'
+        level.value = message
+        status = price
+    }
+    function cursorChange() {
+        if (userName.value && userSurname.value && userEmail.value) {
             cont.style.cursor = 'pointer'
         } else {
             cont.style.cursor = 'not-allowed'
         }
     }
-    function session2(params, message, prize) {
+    function session(params, message, prize) {
         if (params == '2') {
             secondsession.style.backgroundColor = 'rgb(224,207,50)'
             secondsession.style.color = 'rgb(52,52,52)'
@@ -284,59 +295,50 @@
         ticketname = message
         amount = prize
     }
-    function b2p1() {
+    function backToPageOne() {
         page_one.hidden = false
         page_two.hidden = true
     }
-    function topage3() {
+    function proceedToPageThree() {
         page_two.hidden = true
         page_three.hidden = false
-        tkname.innerHTML = ticketname + ' ticket'
-        ppday.innerHTML = amount + '/day'
+        ticketName.innerHTML = ticketname + ' ticket'
+        paymentPerDay.innerHTML = amount + '/day'
     }
-    function b2p2(params) {
+    function backToPageTwo() {
         page_two.hidden = false
         page_three.hidden = true
     }
-    function top4() {
-        if (cardNumber.value && cardHolder.value && spin.value && expDate.value && qu.value >= 1) {
+    function proceedToPageFour() {
+        if (cardNumber.value && cardHolder.value && cvc.value && expDate.value && ticketQuantity.value >= 1) {
             page_three.hidden = true
             page_four.hidden = false
-            insem.innerHTML = email.value
+            receivedEmail.innerHTML = userEmail.value
         } else {
 
         }
     }
-    function quan() {
-        if (qu.value.length > qu.maxLength) qu.value = qu.value.slice(0, qu.maxLength);
-        amt.innerHTML = amount * qu.value + status + '$'
+    function setMaxTicketQuantity() {
+        if (ticketQuantity.value.length > ticketQuantity.maxLength) ticketQuantity.value = ticketQuantity.value.slice(0, ticketQuantity.maxLength);
+        totalAmount.innerHTML = (amount * ticketQuantity.value) + (status * ticketQuantity.value) + '$'
     }
-    let count = 0
-    function spi(message) {
-        if (message == 's') {
-            if (spin.value.length > spin.maxLength) spin.value = spin.value.slice(0, spin.maxLength);
-        }else{
+    function setMaxLength(message) {
+        if (message == 'cvc') {
+            if (cvc.value.length > cvc.maxLength) cvc.value = cvc.value.slice(0, cvc.maxLength);
+        } else {
             if (cardNumber.value.length > cardNumber.maxLength) cardNumber.value = cardNumber.value.slice(0, cardNumber.maxLength);
-            count++
-            if (count == 4) {
+            formatAccountNumber++
+            if (formatAccountNumber == 4) {
                 cardNumber.value += ' '
-                count = 0
+                formatAccountNumber = 0
             }
         }
     }
-    function trigger() {
-        drop.style.display = 'block'
-    }
-    function leve(message, price) {
-        drop.style.display = 'none'
-        level.value = message
-        status = price
-    }
-    co.addEventListener('mouseover', function (params){
-        if (cardNumber.value && cardHolder.value && spin.value && expDate.value && qu.value >= 1) {
-            co.style.cursor = 'pointer';
-        }else{
-            co.style.cursor = 'not-allowed';
+    continueToPageFour.addEventListener('mouseover', function () {
+        if (cardNumber.value && cardHolder.value && cvc.value && expDate.value && ticketQuantity.value >= 1) {
+            continueToPageFour.style.cursor = 'pointer';
+        } else {
+            continueToPageFour.style.cursor = 'not-allowed';
         }
     })
 </script>
