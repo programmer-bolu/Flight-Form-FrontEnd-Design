@@ -611,37 +611,6 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @media (max-width: 925px) {
     section {
         height: 600px;
@@ -653,6 +622,7 @@ input::-webkit-inner-spin-button {
     }
     .up{
         display: none;
+        visibility: hidden;
     }
     .page-two .Topic {
         margin-top: 10px;
